@@ -9,10 +9,10 @@ coverage==4.0.2
 cryptography==1.6
 cssselect==1.0.0
 dj-database-url==0.4.1
-Django==1.10
+Django==1.10.6
 django-debug-toolbar==1.5
 django-easy-timezones==0.7.0
-django-haystack==2.5.0
+django-haystack==2.6.0
 django-pure-pagination==0.3.0
 django-widget-tweaks==1.4.1
 elasticsearch==2.3.0
