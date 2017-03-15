@@ -8,7 +8,7 @@ class MySearchForm(SearchForm):
         'type': 'search',
         'autocorrect': 'off',
         'class': 'form-control',
-        'placeholder': 'Search jobs',
+        'placeholder': 'Search jobs or organizations',
     }))
 
     def search(self):

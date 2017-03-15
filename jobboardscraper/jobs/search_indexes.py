@@ -8,6 +8,7 @@ from .models import Job
 class JobIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     pub_date = indexes.DateTimeField(model_attr='pub_date')
+    organization = indexes.CharField(model_attr='organization')
 
     def get_model(self):
         return Job

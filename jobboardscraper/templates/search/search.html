@@ -18,29 +18,44 @@
 <h1>Search</h1>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-sm-12">
+        {% if search_form.non_field_errors %}
+        <div class="alert alert-danger text-muted">
+            {% for error in search_form.non_field_errors %}
+                <small>{{ error|safe }}</small>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
 
-        {{ search_form.non_field_errors }}
-
-        <form method="get" action="{% url 'search' %}">
-
+<form method="get" action="{% url 'search' %}">
+    <div class="row">
+        <div class="col-sm-9">
             {% for field in search_form %}
                 {% if field.is_hidden %}
                 {{ field }}
+                {% else %}
+                <div class="form-group{% if field.errors %} has-error{% endif %}">
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="text-muted"><small>{{ error|safe }}</small></p>
+                        {% endfor %}
+                    {% endif %}
+                    <p class="{% if field.html_name == 'q' %}sr-only{% endif %}"><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <p class="help-block">{{ field.help_text|safe }}</p>
+                    {% endif %}
+                </div>
                 {% endif %}
             {% endfor %}
-
-            <div class="input-group">
-                {{ search_form.q|attr:"autofocus:autofocus"|add_class:"input-lg" }}
-                <span class="input-group-btn">
-                    <button type="submit" data-submit="Searching" class="btn btn-lg btn-primary">Search</button>
-                </span>
-            </div>
-
-        </form>
-
+        </div>
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </div>
     </div>
-</div>
+</form>
 
 {% if query %}
 
@@ -54,8 +69,10 @@
     {% if object_list %}
         {% for result in object_list %}
         <div class="result">
-            <p><a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></p>
-            <p>{% highlight result.object.body with query %}</p>
+            <p>{{ result.verbose_name }}: <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a></p>
+            {% if result.object.body %}
+                <p>{% highlight result.object.body with query %}</p>
+            {% endif %}
         </div>
         {% endfor %}
     {% endif %}
