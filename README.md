@@ -46,10 +46,10 @@ $ scrapy crawl eslcafe
 Elasticsearch is required to build and update the search index. Assuming [Homebrew](http://brew.sh/) is installed, initial indexing:
 
 ```
-$ brew install caskroom/cask/brew-cask
-$ brew install Caskroom/cask/java
+$ brew tap caskroom/cask
+$ brew cask install java
 $ brew install elasticsearch
-$ elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+$ elasticsearch
 $ python manage.py rebuild_index
 ```
 
