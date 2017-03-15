@@ -50,7 +50,7 @@ $ brew install caskroom/cask/brew-cask
 $ brew install Caskroom/cask/java
 $ brew install elasticsearch
 $ elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
-$ python manage.py rebuild_index`
+$ python manage.py rebuild_index
 ```
 
 Future indexing:
