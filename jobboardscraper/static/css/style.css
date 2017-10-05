@@ -7,3 +7,7 @@
 .site-footer {
     margin: 2rem 0;
 }
+
+.form-control {
+  font-size: 16px;
+}
