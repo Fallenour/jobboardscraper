@@ -8,6 +8,9 @@ from django.core.urlresolvers import reverse_lazy
 
 from .views import FaviconView, HomeView, RobotsView
 
+import debug_toolbar
+
+
 urlpatterns = [
 
     # Admin password reset
@@ -34,3 +37,4 @@ urlpatterns = [
 # Static/media for local development
 if getattr(settings, 'DEBUG', False):
     urlpatterns += staticfiles_urlpatterns() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls))]
